@@ -1,0 +1,38 @@
+{
+	"schemaVersion": 1,
+	"id": "dvspf",
+	"version": "${version}",
+	"name": "DVSPF Party Finder",
+	"description": "A lightweight client-side party finder. Lets your guild post and join parties via /pf commands.",
+	"authors": [
+		"Tai"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/dvspf/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"dvspf.modid.DVSPF"
+		],
+		"client": [
+			"dvspf.modid.client.DVSPFClient"
+		]
+	},
+	"mixins": [
+		"dvspf.mixins.json",
+		{
+			"config": "dvspf.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.16",
+		"minecraft": "~1.21.11",
+		"java": ">=21",
+		"fabric-api": "*"
+	}
+}
