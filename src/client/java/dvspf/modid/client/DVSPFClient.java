@@ -5,6 +5,7 @@ import dvspf.modid.client.commands.PartyFinderCommands;
 import dvspf.modid.client.config.DvspfConfig;
 import dvspf.modid.client.partyfinder.HttpPartyRepository;
 import dvspf.modid.client.partyfinder.PartyFinderManager;
+import dvspf.modid.client.reminder.InactivityReminder;
 
 import net.fabricmc.api.ClientModInitializer;
 
@@ -34,5 +35,6 @@ public class DVSPFClient implements ClientModInitializer {
 
 		PartyFinderCommands.register();
 		PartyFinderChatListener.register();
+		InactivityReminder.start(cfg.reminderIntervalMinutes);
 	}
 }

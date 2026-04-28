@@ -48,6 +48,12 @@ public class DvspfConfig {
     /** How often the background poller hits {@code /api/listings}. */
     public int pollIntervalSeconds = 15;
 
+    /**
+     * Minutes between "you still have a listing posted" nag reminders. Set to
+     * 0 to disable. Default 45 — reminder once every 45 mins.
+     */
+    public int reminderIntervalMinutes = 45;
+
     /** Read-or-create the config file. Never throws — returns defaults on any failure. */
     public static DvspfConfig load() {
         Path configPath = FabricLoader.getInstance().getConfigDir().resolve(FILENAME);
@@ -83,6 +89,8 @@ public class DvspfConfig {
         apiKey = apiKey.trim();
         if (pollIntervalSeconds < 5) pollIntervalSeconds = 5;       // don't hammer the server
         if (pollIntervalSeconds > 300) pollIntervalSeconds = 300;   // don't make the GUI feel dead
+        if (reminderIntervalMinutes < 0) reminderIntervalMinutes = 0;
+        if (reminderIntervalMinutes > 240) reminderIntervalMinutes = 240; // 4h max
     }
 
     private static void writeDefaults(Path target, DvspfConfig cfg) throws IOException {
